@@ -10,6 +10,7 @@ import Home from 'Containers/Home';
 import AboutUs from 'Containers/AboutUs';
 import NotFound from 'Containers/NotFound';
 
+import 'antd/dist/antd.css';
 import './index.scss';
 
 const App = () => (
