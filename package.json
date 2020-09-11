@@ -47,6 +47,7 @@
     "antd": "^4.6.3",
     "axios": "^0.20.0",
     "axios-case-converter": "^0.6.0",
+    "faker": "^5.1.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.2.0"

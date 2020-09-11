@@ -1,16 +1,18 @@
 import React from 'react';
-import { ReactComponent as NeoCoastLogo } from 'Assets/neocoast-logo.svg';
+import faker from 'faker';
+import PostsList from 'Components/PostsList';
 import './index.scss';
 
+const posts = [...Array(faker.random.number({ max: 20, min: 15 }))].map((_, index) => ({
+  content: faker.lorem.paragraph(),
+  id: index,
+  title: faker.lorem.word(),
+  username: faker.internet.userName(),
+}));
+
 const Home = () => (
-  <div className="home">
-    <NeoCoastLogo width={300} />
-    <h1>
-      Welcome to the Home page of your React App
-    </h1>
-    <h5>
-      Bolierplate made with <span role="img" aria-label="love">♥️</span> by <a href="https://www.neocoast.com" target="_blank" rel="nofollow">NeoCoast</a>
-    </h5>
+  <div>
+    <PostsList posts={posts} />
   </div>
 );
 
