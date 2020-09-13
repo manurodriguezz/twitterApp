@@ -8,7 +8,7 @@ const Layout = ({ children }) => (
   <AntLayout className="layout">
     <AntLayout.Header className="layout__header">
     </AntLayout.Header>
-    <AntLayout.Content>
+    <AntLayout.Content className="layout__content">
       {children}
     </AntLayout.Content>
     <AntLayout.Footer>

@@ -7,6 +7,7 @@ import {
 import { ROUTES } from 'Data/constants';
 import Layout from 'Components/Layout';
 import UserPosts from 'Containers/UserPosts';
+import UserShow from 'Containers/UserShow';
 import NotFound from 'Containers/NotFound';
 
 import 'antd/dist/antd.css';
@@ -16,6 +17,7 @@ const App = () => (
   <Router>
     <Layout>
       <Switch>
+        <Route exact path={ROUTES.user} component={UserShow} />
         <Route exact path={ROUTES.userPosts} component={UserPosts} />
         <Route component={NotFound} />
       </Switch>
