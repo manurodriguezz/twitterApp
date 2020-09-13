@@ -6,8 +6,7 @@ import {
 } from 'react-router-dom';
 import { ROUTES } from 'Data/constants';
 import Layout from 'Components/Layout';
-import Home from 'Containers/Home';
-import AboutUs from 'Containers/AboutUs';
+import UserPosts from 'Containers/UserPosts';
 import NotFound from 'Containers/NotFound';
 
 import 'antd/dist/antd.css';
@@ -17,8 +16,7 @@ const App = () => (
   <Router>
     <Layout>
       <Switch>
-        <Route exact path={ROUTES.home} component={Home} />
-        <Route exact path={ROUTES.about} component={AboutUs} />
+        <Route exact path={ROUTES.userPosts} component={UserPosts} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

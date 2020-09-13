@@ -1,6 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 
 export const ROUTES = {
-  about: '/about-us',
-  home: '/',
+  userPosts: '/users/:id/posts',
 };

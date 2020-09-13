@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout as AntLayout } from 'antd';
-import { Link } from 'react-router-dom';
-import { ROUTES } from 'Data/constants';
 
 import './index.scss';
 
 const Layout = ({ children }) => (
   <AntLayout className="layout">
     <AntLayout.Header className="layout__header">
-      <Link to={ROUTES.home}>Home</Link>
-      <Link to={ROUTES.about}>About Us</Link>
     </AntLayout.Header>
     <AntLayout.Content>
       {children}
