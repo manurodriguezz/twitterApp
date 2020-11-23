@@ -2,6 +2,5 @@
 
 export const ROUTES = {
   home: '/',
-  user: '/users/:id',
-  userPosts: '/users/:id/posts',
+  showTweets: '/showTweets',
 };

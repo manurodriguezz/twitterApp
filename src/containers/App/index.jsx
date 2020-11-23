@@ -7,20 +7,18 @@ import {
 import { ROUTES } from 'Data/constants';
 import Layout from 'Components/Layout';
 import Home from 'Containers/Home';
-import UserPosts from 'Containers/UserPosts';
-import UserShow from 'Containers/UserShow';
 import NotFound from 'Containers/NotFound';
 
 import 'antd/dist/antd.css';
 import './index.scss';
+import ShowTweets from 'Containers/ShowTweets';
 
 const App = () => (
   <Router>
     <Layout>
       <Switch>
         <Route exact path={ROUTES.home} component={Home} />
-        <Route exact path={ROUTES.user} component={UserShow} />
-        <Route exact path={ROUTES.userPosts} component={UserPosts} />
+        <Route exact path={ROUTES.showTweets} component={ShowTweets} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

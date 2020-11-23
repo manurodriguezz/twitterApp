@@ -1,21 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout as AntLayout } from 'antd';
+import { Box, Header, Heading } from 'grommet';
+import { Twitter } from 'grommet-icons';
+import { useHistory } from 'react-router-dom';
 
 import './index.scss';
 
-const Layout = ({ children }) => (
-  <AntLayout className="layout">
-    <AntLayout.Header className="layout__header">
-    </AntLayout.Header>
-    <AntLayout.Content className="layout__content">
-      {children}
-    </AntLayout.Content>
-    <AntLayout.Footer>
-      Boilerplate made with <span role="img" aria-label="love">♥️</span> by <a href="https://www.neocoast.com" target="_blank" rel="nofollow">NeoCoast</a>
-    </AntLayout.Footer>
-  </AntLayout>
-);
+const Layout = ({ children }) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/');
+  };
+
+  return (
+    <Box className="layout">
+      <Header background="#1DA1F2">
+        <Box focusIndicator={false} onClick={() => handleClick()} gap="medium" pad="small" direction="row">
+          <Heading>Twitter App</Heading>
+          <Twitter color="black" size="large" />
+        </Box>
+      </Header>
+      <Box pad="medium" align="center">
+        {children}
+      </Box>
+    </Box>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node,

@@ -1,45 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import Loader from 'Components/Loader';
-import NewPost from 'Components/NewPost';
-import postsService from 'Api/posts.service';
-import usersService from 'Api/users.service';
+import React, { useState } from 'react';
+import { Box, Button, TextInput } from 'grommet';
+import { useDispatch } from 'react-redux';
+import { search } from 'Actions/setTweets';
+import { useHistory } from 'react-router-dom';
+import '@yaireo/tagify/dist/tagify.css'; // Tagify CSS
 
 const Home = () => {
-  const [loading, setLoading] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [data, setData] = useState({ parties: [], query: '' });
+  const parties = ['Democrats', 'Republicans'];//['Frente Amplio', 'Partido Nacional', 'Cabildo Abierto', 'Partido Colorado', 'PERI'];
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [input, setInput] = useState('');
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setLoading(true);
-        const res = await usersService.index();
-        setUsers(res);
-      } catch (error) {
-        /* handle error */
-        console.error('error: ', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUsers();
-  }, []);
-
-  const createPost = async (postData, cb) => {
-    try {
-      await postsService.create(postData);
-    } catch (error) {
-      /* handle error */
-      console.error('error: ', error);
-    } finally {
-      cb();
+  const onClickParty = (party) => {
+    if (!(data.parties.includes(party))) {
+      const aux = data.parties;
+      aux.push(party);
+      setData({ parties: aux, tags: data.tags });
+    } else {
+      const aux = data.parties;
+      aux.splice(aux.indexOf(party), 1);
+      setData({ parties: aux, tags: data.tags });
     }
   };
 
-  if (loading) return <Loader />;
+  const setValue = (value) => {
+    setInput(value);
+  };
+
+  const onSubmit = async () => {
+    data.query = input;
+    await dispatch(search(data));
+    history.push('/showTweets');
+  };
 
   return (
-    <NewPost users={users} onSubmit={createPost} />
+    <Box>
+      <Box align="stretch" direction="row" gap="xlarge" pad="large">
+        {parties.map((value) => (
+          <Button
+            key={value}
+            size="medium"
+            onClick={() => onClickParty(value)}
+            label={value}
+            primary={data.parties.includes(value)}
+            color="#1DA1F2"
+          />
+        ))}
+      </Box>
+      {/* <Tags
+        onChange={(e) => (e.persist(), onAddTag(e.target.value))}
+        whitelist={suggestions}
+      /> */}
+      <TextInput
+        placeholder="Escriba una consulta aqui"
+        value={input}
+        onChange={(event) => setValue(event.target.value)}
+      />
+      <Box pad={{ left: 'xlarge', right: 'xlarge', top: 'medium' }}>
+        <Button fill size="large" primary color="#1DA1F2" label="Buscar" onClick={onSubmit} />
+      </Box>
+    </Box>
   );
 };
 
